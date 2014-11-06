@@ -69,11 +69,10 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
         },
 
         template: 
-            '<span class="multiSelect inlineBlock">' +        
+            '<div class="multiSelect inlineBlock">' +        
                 '<button type="button" class="button multiSelectButton" ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton();" ng-bind-html="varButtonLabel">' +
                 '</button>' +                              
-                '<div class="checkboxLayer">' +                        
-                    '<form>' + 
+                '<span class="checkboxLayer">' +                         
                         '<div class="helperContainer" ng-if="displayHelper( \'filter\' ) || displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
                             '<div class="line" ng-if="displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
                                 '<button type="button" ng-click="select( \'all\',   $event );"    class="helperButton" ng-if="!isDisabled && displayHelper( \'all\' )">   &#10003;&nbsp; Select All</button> ' +
@@ -101,9 +100,8 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
                                 '<span class="tickMark" ng-if="item[ groupProperty ] !== true && item[ tickProperty ] === true">&#10004;</span>' +
                             '</div>' +
                         '</div>' +
-                    '</form>' +
-                '</div>' +
-            '</span>',
+                '</span>' +
+            '</div>',
 
         link: function ( $scope, element, attrs ) {           
 
@@ -194,8 +192,8 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             // This function will be called everytime the filter is updated. Not good for performance, but oh well..
             $scope.getFormElements = function() {                     
                 $scope.formElements = [];
-                for ( var i = 0; i < element[ 0 ].getElementsByTagName( 'FORM' )[ 0 ].elements.length ; i++ ) { 
-                    $scope.formElements.push( element[ 0 ].getElementsByTagName( 'FORM' )[ 0 ].elements[ i ] );
+                for ( var i = 0; i < element[ 0 ].getElementById( 'SPAN' )[ 0 ].elements.length ; i++ ) { 
+                    $scope.formElements.push( element[ 0 ].getElementById( 'SPAN' )[ 0 ].elements[ i ] );
                 }
             }            
 
