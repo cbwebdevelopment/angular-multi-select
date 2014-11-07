@@ -193,8 +193,11 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             // This function will be called everytime the filter is updated. Not good for performance, but oh well..
             $scope.getFormElements = function() {                     
                 $scope.formElements = [];
-                for ( var i = 0; i < element[ 0 ].getElementsByClassName( 'checkBoxContainer' )[ 0 ].elements.length ; i++ ) { 
-                    $scope.formElements.push( element[ 0 ].getElementsByClassName( 'checkBoxContainer' )[ 0 ].elements[ i ] );
+                var thisElement =  element[0];
+                var theseChecks =thisElement.getElementsByClassName('checkBoxContainer');
+                var total = theseChecks[0].getElementsByClassName('multiSelectItem').length;
+                for ( var i = 0; i < total ; i++ ) { 
+                    $scope.formElements.push(theseChecks[0].childNodes[i] );
                 }
             }            
 
