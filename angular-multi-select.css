@@ -243,9 +243,12 @@
 /* hide the original HTML checkbox away */
 .multiSelect .checkbox {    
     color: #ddd !important;    
-    position: absolute;
-    left: -9999px;
-    cursor: pointer;    
+   /* position: absolute;*/
+   /* left: -9999px;*/
+    cursor: pointer; 
+}
+input[type="checkbox"]:not(:checked) {
+	outline:none !important;   
 }
 
 /* checkboxes currently disabled */

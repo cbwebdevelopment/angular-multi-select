@@ -3,7 +3,7 @@
  * Creates a dropdown-like button with checkboxes. 
  *
  * Project started on: Tue, 14 Jan 2014 - 5:18:02 PM
- * Current version: 2.0.2
+ * Current version: 2.0.1
  * 
  * Released under the MIT License
  * --------------------------------------------------------------------------------
@@ -69,10 +69,10 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
         },
 
         template: 
-            '<div class="multiSelect inlineBlock">' +        
+            '<span class="multiSelect inlineBlock">' +        
                 '<button type="button" class="button multiSelectButton" ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton();" ng-bind-html="varButtonLabel">' +
                 '</button>' +                              
-                '<div class="checkboxLayer">' +                         
+                '<div class="checkboxLayer">' +                        
                         '<div class="helperContainer" ng-if="displayHelper( \'filter\' ) || displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
                             '<div class="line" ng-if="displayHelper( \'all\' ) || displayHelper( \'none\' ) || displayHelper( \'reset\' )">' +
                                 '<button type="button" ng-click="select( \'all\',   $event );"    class="helperButton" ng-if="!isDisabled && displayHelper( \'all\' )">   &#10003;&nbsp; Select All</button> ' +
@@ -100,8 +100,9 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
                                 '<span class="tickMark" ng-if="item[ groupProperty ] !== true && item[ tickProperty ] === true">&#10004;</span>' +
                             '</div>' +
                         '</div>' +
+                    '</form>' +
                 '</div>' +
-            '</div>',
+            '</span>',
 
         link: function ( $scope, element, attrs ) {           
 
@@ -159,7 +160,7 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
 
                         for (var key in $scope.inputModel[ i ] ) {
                             // if filter string is in one of object property                            
-                            if ( typeof $scope.inputModel[ i ][ key ] !== 'boolean'  && String( $scope.inputModel[ i ][ key ] ).toUpperCase().indexOf( $scope.inputLabel.labelFilter.toUpperCase() ) >= 0 ) {
+                            if ( typeof $scope.inputModel[ i ][ key ] !== 'boolean' && typeof $scope.inputModel[i][key] !== 'undefined' && String( $scope.inputModel[ i ][ key ] ).toUpperCase().indexOf( $scope.inputLabel.labelFilter.toUpperCase() ) >= 0 ) {
                                 gotData = true;
                                 break;
                             }
@@ -192,8 +193,8 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
             // This function will be called everytime the filter is updated. Not good for performance, but oh well..
             $scope.getFormElements = function() {                     
                 $scope.formElements = [];
-                for ( var i = 0; i < element[ 0 ].document.getElementsByClassName( 'checkboxLayer' )[ 0 ].elements.length ; i++ ) { 
-                    $scope.formElements.push( element[ 0 ].document.getElementsByClassName( 'checkboxLayer' )[ 0 ].elements[ i ] );
+                for ( var i = 0; i < element[ 0 ].getElementsByTagName( 'FORM' )[ 0 ].elements.length ; i++ ) { 
+                    $scope.formElements.push( element[ 0 ].getElementsByTagName( 'FORM' )[ 0 ].elements[ i ] );
                 }
             }            
 
@@ -400,6 +401,12 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
                     // Multiple
                     else {
                         $scope.filteredModel[ index ][ $scope.tickProperty ]   = !$scope.filteredModel[ index ][ $scope.tickProperty ];
+                        var $target = $(e.target);
+                       if ($target.attr('type') === 'checkbox') {
+                            $timeout(function () {
+                                $target.prop('checked', item[ $scope.tickProperty ]);
+                            });
+                        }
                     }
 
                     // we refresh input model as well
