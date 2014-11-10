@@ -14,8 +14,8 @@
 
 /* ! create a "row" */
 .multiSelect .line {
-    max-height: 34px;   
-    overflow: hidden;
+	background:red;
+	padding:0 0 0 0;
 }
 
 /* ! create a "column" */
@@ -88,7 +88,6 @@
 
 /* the main checkboxes and helper layer */
 .multiSelect .checkboxLayer {
-    background-color: #fff;
     position: absolute;
     z-index: 999;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -100,12 +99,14 @@
     display: none !important;
     margin-right: 30px;
 }
+
+.multiSelect .checkboxLayer .wrapper {
+background:white;
+padding:5px 5px 5px 5px;
 }
 
 /* container of helper elements */
 .multiSelect .helperContainer {
-    border-bottom: 1px solid #ddd;
-    padding: .5em;
 }
 
 /* helper buttons (select all, none, reset); */
@@ -175,7 +176,6 @@ border: 1px solid #cccccc;
 /* container of multi select items */
 .multiSelect .checkBoxContainer {
   display: block;
-    padding: .5em .5em .5em .5em;
 }
 
 /* ! to show / hide the checkbox layer above */
