@@ -14,7 +14,6 @@
 
 /* ! create a "row" */
 .multiSelect .line {
-	background:red;
 	padding:0 0 0 0;
 }
 
@@ -97,16 +96,17 @@
     min-width:278px;
     width:100%;
     display: none !important;
-    margin-right: 30px;
+    margin-right: 30px;background:white;
+
 }
 
 .multiSelect .checkboxLayer .wrapper {
-background:white;
 padding:5px 5px 5px 5px;
 }
 
 /* container of helper elements */
 .multiSelect .helperContainer {
+    padding: .5em;
 }
 
 /* helper buttons (select all, none, reset); */
