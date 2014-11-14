@@ -614,14 +614,18 @@ angular.module( 'multi-select', ['ng'] ).directive( 'multiSelect' , [ '$sce', '$
                     }
                     
                     // focus on the filter element on open. 
-                    if ( element[ 0 ].querySelector( '.inputFilter' ) ) {                        
-                        element[ 0 ].querySelector( '.inputFilter' ).focus();                        
-                        $scope.tabIndex = $scope.tabIndex + helperItemsLength - 2;
-                    }
+                    //if ( element[ 0 ].querySelector( '.inputFilter' ) ) {                        
+                       // element[ 0 ].querySelector( '.inputFilter' ).focus();                        
+                       // $scope.tabIndex = $scope.tabIndex + helperItemsLength - 2;
+                   // }
                     // if there's no filter then just focus on the first checkbox item
-                    else {                                                
-                        $scope.formElements[ $scope.tabIndex ].focus();                                                
-                    }                       
+                    //else {                                                
+                     //   $scope.formElements[ $scope.tabIndex ].focus();                                                
+                    //}                       
+											// note: in our project we just want to focus on checks.
+										 $scope.formElements[ $scope.tabIndex ].focus();
+
+
 
                     // open callback
                     $scope.onOpen( { data: element } );
