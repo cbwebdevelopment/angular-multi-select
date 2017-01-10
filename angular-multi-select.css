@@ -161,8 +161,8 @@ border: 1px solid #cccccc;
 	color: #4d4d4d;
 	border-radius: 0px;
 	text-align:center !important;
-	  padding-top.5em  !important;
-	  padding-bottom.5em  !important;  
+	  padding-top: .5em  !important;
+	  padding-bottom: .5em  !important;  
 }
 
 .multiSelect .clearButton:focus,
